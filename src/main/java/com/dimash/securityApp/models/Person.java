@@ -20,6 +20,8 @@ public class Person {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
+    private String role;
     public Person() {
     }
 
@@ -52,6 +54,14 @@ public class Person {
         this.year_of_birth = year_of_birth;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -67,6 +77,7 @@ public class Person {
                 ", username='" + username + '\'' +
                 ", year_of_birth=" + year_of_birth +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

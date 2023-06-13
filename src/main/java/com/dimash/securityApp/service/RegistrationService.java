@@ -24,6 +24,7 @@ public class RegistrationService {
     public void register(Person person) {
         // тут устанавливается пароль при регистрации и мы шифруем его
         person.setPassword(bCryptPasswordEncoder.encode(person.getPassword()));
+        person.setRole("ROLE_USER");
         // затем сохраним его
         peopleRepository.save(person);
     }

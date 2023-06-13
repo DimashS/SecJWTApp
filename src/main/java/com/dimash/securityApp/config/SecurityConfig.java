@@ -28,8 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // конфигурация самого спринг секьюрити
         // конфигурируем авторизацию
-        http.authorizeRequests().antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
-                .anyRequest().authenticated()
+        http.authorizeRequests()
+                .antMatchers("/admin").hasRole("ADMIN") // оказывается надо указать лишь ROLE, spring security
+                //                                                                          все поймет кто это
+                .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
+                .anyRequest().hasAnyRole( "USER","ADMIN")
                 .and().formLogin().loginPage("/auth/login") // передаем свою страницу
                 .loginProcessingUrl("/login")
                 // без неё не обработает запрос после регистрации и не перекинет
@@ -39,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 В данном случае, .defaultSuccessUrl("/hello", true) указывает, что пользователь всегда будет
                 перенаправлен на URL-адрес "/hello" после успешного входа в систему,
                 даже если у него был предварительный запрос на доступ к защищенному ресурсу.
-                Параметр true гарантирует, что перенаправление будет выполняться всегда, игнорируя предыдущий запрос пользователя.
+                Параметр true гарантирует, что перенаправление будет выполняться всегда, игнорируя предыдущий запрос
+                пользователя.
                  */
                 .failureUrl("/auth/login?error") // знак вопроса => url куда будет переправлен клиент
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/auth/login");

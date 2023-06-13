@@ -1,6 +1,7 @@
 package com.dimash.securityApp.controller;
 
 import com.dimash.securityApp.security.PersonDetails;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,5 +24,10 @@ public class HelloController {
         return "hello";
         // получим доступ к тому что мы положили в методе AuthProvider => in UserNameAuthenicationToken in first
         // parametr
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin";
     }
 }

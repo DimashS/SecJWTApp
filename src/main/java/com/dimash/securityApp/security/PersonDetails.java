@@ -3,9 +3,11 @@ package com.dimash.securityApp.security;
 import com.dimash.securityApp.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
 // класс обертка над сущностью, чтобы напрямую не работать с Person => best practice
 // impl UserDetails обязательно => стандарт
@@ -19,7 +21,8 @@ public class PersonDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        // или роль или действия
+        return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));
     }
 
     @Override
