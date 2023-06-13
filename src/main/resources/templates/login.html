@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>DSDS</title>
+    <meta charset="UTF-8">
+    <title>DSDS</title>
 </head>
 <body>
 
-<form name="f" method="post" action = "/process_login">
-  <label for = "username">Введите имя пользователя: </label>
-  <input type = "text" name = "username" id="username"/>
-  <br/>
-  <label for="password">Введите пароль:</label>
-  <input type="password" name="password" id="password">
-  <br/>
-  <input type="submit" value="Login"/>
+<form name="f" method="post" action="/login">
+    <!--
+        Данная строка представляет HTML-элемент <form>, который используется для создания формы на веб-странице.
+        Здесь представлена форма с именем "f", методом передачи данных "post" и атрибутом "action",
+        указывающим на "/process_login".
 
-  <div th:if="${param.error}" style = "color: red">
-    It's wrong name or password
-  </div>
+        Атрибут "action" определяет адрес или путь, куда будут отправляться данные формы после ее отправки пользователем.
+        В данном случае, при отправке данных формы, они будут переданы на сервер по адресу "/process_login".
+        Обычно на сервере существует обработчик, который принимает эти данные и выполняет соответствующие операции,
+        например, проверку логина и пароля пользователя.
+
+        "Post" является одним из методов передачи данных в HTML-форме. Он обеспечивает
+        отправку данных на сервер внутри HTTP-запроса телом запроса, что делает его предпочтительным для передачи
+        конфиденциальной информации, такой как пароли.-->
+    <!--явно добавим csrf токен-->
+    <input type="text" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <!--    ${_csrf.parameterName} - это выражение Thymeleaf, которое будет заменено
+    на имя параметра CSRF-токена при генерации HTML-кода. Значение этого параметра обычно зависит
+    от конфигурации сервера или фреймворка.
+
+    ${_csrf.token} - это выражение Thymeleaf, которое будет заменено на сам CSRF-токен при генерации HTML-кода.
+     CSRF-токен представляет собой случайно сгенерированное значение, которое уникально для каждой сессии пользователя.-->
+    <label for="username">Введите имя пользователя: </label>
+    <input type="text" name="username" id="username"/>
+    <br/>
+    <label for="password">Введите пароль:</label>
+    <input type="password" name="password" id="password">
+    <br/>
+    <input type="submit" value="Login"/>
+
+    <div th:if="${param.error}" style="color: red">
+        It's wrong name or password
+    </div>
 </form>
 
 </body>

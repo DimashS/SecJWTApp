@@ -28,11 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // конфигурация самого спринг секьюрити
         // конфигурируем авторизацию
-        http.csrf().disable()
-                .authorizeRequests().antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
+        http.authorizeRequests().antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/auth/login") // передаем свою страницу
-                .loginProcessingUrl("/process_login")
+                .loginProcessingUrl("/login")
                 // без неё не обработает запрос после регистрации и не перекинет
                 // на страницу логина
                 .defaultSuccessUrl("/hello", true)
