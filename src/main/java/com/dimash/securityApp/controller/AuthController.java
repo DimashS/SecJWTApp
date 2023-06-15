@@ -3,13 +3,11 @@ package com.dimash.securityApp.controller;
 import com.dimash.securityApp.models.Person;
 import com.dimash.securityApp.service.RegistrationService;
 import com.dimash.securityApp.util.PersonValidator;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -43,6 +41,6 @@ public class AuthController {
         if (bindingResult.hasErrors())
             return "/registration";
         registrationService.register(person);
-        return "redirect:/auth/login";
+        return "redirect:/login";
     }
 }

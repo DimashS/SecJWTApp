@@ -1,6 +1,7 @@
 package com.dimash.securityApp.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,6 +16,7 @@ public class Person {
     @Column(name = "username")
     private String username;
     @Min(value = 1900,message = "Can't be")
+    @Max(value = 2023, message = "Impossible")
     @Column(name = "year_of_birth")
     private int year_of_birth;
     @Column(name = "password")
