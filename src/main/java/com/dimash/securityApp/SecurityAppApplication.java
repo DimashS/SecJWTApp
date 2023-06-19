@@ -12,4 +12,8 @@ public class SecurityAppApplication {
         SpringApplication.run(SecurityAppApplication.class, args);
     }
 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 }

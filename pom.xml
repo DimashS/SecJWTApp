@@ -11,7 +11,7 @@
 	<groupId>com.dimash</groupId>
 	<artifactId>securityApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>securityApp</name>
+	<username>securityApp</username>
 	<description>Spring Security application trying</description>
 	<properties>
 		<java.version>17</java.version>

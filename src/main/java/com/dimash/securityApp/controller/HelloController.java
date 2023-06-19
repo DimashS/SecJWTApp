@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloController {
@@ -15,13 +16,12 @@ public class HelloController {
         return "hello";
     }
 
-    @GetMapping("/showUserInfo")
+    @GetMapping("/ShowMe")
+    @ResponseBody
     public String showUserInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal(); // получим принципал
-        System.out.println(personDetails.getPerson());
-
-        return "hello";
+        return personDetails.getUsername();
         // получим доступ к тому что мы положили в методе AuthProvider => in UserNameAuthenicationToken in first
         // parametr
     }

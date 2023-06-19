@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form name="f" method="post" action="/login">
+<form username="f" method="post" action="/login">
     <!--
         Данная строка представляет HTML-элемент <form>, который используется для создания формы на веб-странице.
         Здесь представлена форма с именем "f", методом передачи данных "post" и атрибутом "action",
@@ -21,7 +21,7 @@
         отправку данных на сервер внутри HTTP-запроса телом запроса, что делает его предпочтительным для передачи
         конфиденциальной информации, такой как пароли.-->
     <!--явно добавим csrf токен-->
-    <input type="text" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="text" th:username="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <!--    ${_csrf.parameterName} - это выражение Thymeleaf, которое будет заменено
     на имя параметра CSRF-токена при генерации HTML-кода. Значение этого параметра обычно зависит
     от конфигурации сервера или фреймворка.
@@ -30,15 +30,15 @@
      CSRF-токен представляет собой случайно сгенерированное значение, которое уникально для каждой
       сессии пользователя.-->
     <label for="username">Введите имя пользователя: </label>
-    <input type="text" name="username" id="username"/>
+    <input type="text" username="username" id="username"/>
     <br/>
     <label for="password">Введите пароль:</label>
-    <input type="password" name="password" id="password">
+    <input type="password" username="password" id="password">
     <br/>
     <input type="submit" value="Login"/>
 
     <div th:if="${param.error}" style="color: red">
-        It's wrong name or password
+        It's wrong username or password
     </div>
 </form>
 
